@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Options & Services - Chalet l'Orée du Lac</title>
+  <meta name="title" content="Options & Services - Chalet l'Orée du Lac">
+  <meta name="description" content="Découvrez tous les services inclus dans votre séjour">
+
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <style>
+    .options-section {
+      padding-top: var(--section-space);
+      padding-bottom: var(--section-space);
+      background-color: var(--smoky-black-2);
+      min-height: 100vh;
+      margin-top: 90px; /* Ajuster en fonction du header */
+    }
+
+    .option-card {
+      background-color: var(--smoky-black-1);
+      padding: 40px;
+      border-radius: var(--radius-24);
+      margin-bottom: 30px;
+      border: 1px solid transparent;
+      transition: var(--transition-2);
+    }
+
+    .option-card:hover {
+      border-color: var(--gold-crayola);
+    }
+
+    .option-icon {
+      font-size: 48px;
+      color: var(--gold-crayola);
+      margin-bottom: 20px;
+    }
+
+    .option-title {
+      margin-bottom: 15px;
+      color: var(--gold-crayola);
+    }
+
+    .option-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      background-color: var(--gold-crayola);
+      color: var(--smoky-black-1);
+      border-radius: var(--radius-24);
+      font-size: var(--fontSize-label-2);
+      margin-bottom: 20px;
+    }
+
+    .option-description {
+      color: var(--white);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .option-details {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .option-details li {
+      color: var(--quick-silver);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-details ion-icon {
+      color: var(--gold-crayola);
+      font-size: 20px;
+    }
+
+    /* Ajustement de la grille des options */
+    .grid-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 40px 0;
+    }
+
+    /* Ajustement de la hauteur des cartes */
+    .option-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-details {
+      margin-top: auto;
+    }
+
+    /* Style pour le scroll doux */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Ajustement de l'espacement */
+    .options-section {
+      padding-top: 120px;
+      margin-bottom: 60px;
+    }
+
+    /* Assurer que le contenu est scrollable */
+    body {
+      overflow-y: auto;
+      position: relative;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Ajuster l'espacement du formulaire */
+    .reservation {
+      padding-top: var(--section-space);
+      padding-bottom: var(--section-space);
+      background-color: var(--smoky-black-3);
+    }
+  </style>
+</head>
+
+<body id="top">
+  <!-- Preloader reste en premier -->
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">Chalet Oree du lac</p>
+  </div>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <address class="topbar-item">
+        <div class="icon">
+          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">
+          1003, route de vonnes, Châtel 74390, FR
+        </span>
+      </address>
+
+      <div class="separator"></div>
+
+      <div class="topbar-item item-2">
+        <div class="icon">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">Immatriculation: 74063 000490 9Y</span>
+      </div>
+
+      <a href="tel:+33676381707" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">+33 676381707</span>
+      </a>
+
+      <div class="separator"></div>
+
+      <a href="mailto:info@chalet-chatel74.com" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">info@chalet-chatel74.com</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" data-header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="./assets/images/logo.svg" width="160" height="50" alt="Orée du lac - Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="index.html" class="logo">
+          <img src="./assets/images/logo.svg" width="160" height="50" alt="Orée du lac - Home">
+        </a>
+
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Accueil</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./galerie.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Galerie</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#reservation" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Réserver</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./a-propos.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Vos hôtes</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#reservation" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Contact</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./disponibilites.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Disponibilités</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="text-center">
+          <p class="headline-1 navbar-title">Nous visiter</p>
+
+          <address class="body-4">
+            1003, Route de vonnes, <br>
+            Châtel 74390, FR
+          </address>
+
+          <p class="body-4 navbar-text">Ouvert: Saisons - Semaine et weekend</p>
+
+          <a href="mailto:info@chalet-chatel74.com" class="body-4 sidebar-link">info@chalet-chatel74.com</a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Renseignements</p>
+
+          <a href="tel:+33676381707" class="body-1 contact-number hover-underline">
+            06 76 38 17 07
+          </a>
+
+          <a href="#reservation" class="btn btn-secondary">
+            <span class="text text-1">Réserver Maintenant</span>
+            <span class="text text-2" aria-hidden="true">Réserver Maintenant</span>
+          </a>
+        </div>
+      </nav>
+
+      <a href="#reservation" class="btn btn-secondary">
+        <span class="text text-1">Réserver</span>
+        <span class="text text-2" aria-hidden="true">Réserver</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main>
+    <article>
+      <!-- Section Options -->
+      <section class="options-section" aria-label="options">
+        <div class="container">
+          <p class="section-subtitle text-center label-2">Nos services pour</p>
+          <h2 class="headline-1 section-title text-center">Un séjour inoubliable</h2>
+
+          <div class="grid-list">
+            <!-- Accès Forme d'Eau -->
+            <div class="option-card">
+              <ion-icon name="water-outline" class="option-icon"></ion-icon>
+              <h3 class="title-3 option-title">Accès à Forme d'Eau</h3>
+              <span class="option-badge">UNIQUE</span>
+              <p class="option-description">
+                Profitez d'un accès illimité à Forme d'Eau grâce à nos pass spéciaux. Un moment de détente et de bien-être garanti.
+              </p>
+              <ul class="option-details">
+                <li><ion-icon name="checkmark-outline"></ion-icon>Accès illimité pendant votre séjour</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Pass inclus dans votre réservation</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Espace bien-être complet</li>
+              </ul>
+            </div>
+
+            <!-- Départ Ménage -->
+            <div class="option-card">
+              <ion-icon name="home-outline" class="option-icon"></ion-icon>
+              <h3 class="title-3 option-title">Départ Ménage</h3>
+              <span class="option-badge">INCLUS</span>
+              <p class="option-description">
+                Partez l'esprit tranquille, nous nous occupons du ménage après votre départ. Profitez de vos vacances jusqu'à la dernière minute.
+              </p>
+              <ul class="option-details">
+                <li><ion-icon name="checkmark-outline"></ion-icon>Service inclus dans le tarif</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Nettoyage professionnel</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Désinfection complète</li>
+              </ul>
+            </div>
+
+            <!-- Bois de chauffage -->
+            <div class="option-card">
+              <ion-icon name="bonfire-outline" class="option-icon"></ion-icon>
+              <h3 class="title-3 option-title">Bois de Chauffage</h3>
+              <span class="option-badge">INCLUS</span>
+              <p class="option-description">
+                Les forêts derrière le chalet sont entretenues pour vos balades mais aussi pour fournir le bois qui vous chauffe après une belle journée en station.
+              </p>
+              <ul class="option-details">
+                <li><ion-icon name="checkmark-outline"></ion-icon>Bois sec et de qualité</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Stock illimité</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Approvisionnement quotidien</li>
+              </ul>
+            </div>
+
+            <!-- Pot d'Accueil -->
+            <div class="option-card">
+              <ion-icon name="wine-outline" class="option-icon"></ion-icon>
+              <h3 class="title-3 option-title">Pot d'Accueil</h3>
+              <span class="option-badge">NOUVEAUTÉ</span>
+              <p class="option-description">
+                Nous savons que la route est parfois longue et stressante, c'est pour cela que nous vous proposons un petit pot d'arrivée.
+              </p>
+              <ul class="option-details">
+                <li><ion-icon name="checkmark-outline"></ion-icon>Boissons locales</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Spécialités savoyardes</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Moment de convivialité</li>
+              </ul>
+            </div>
+
+            <!-- Multipass -->
+            <div class="option-card">
+              <ion-icon name="ticket-outline" class="option-icon"></ion-icon>
+              <h3 class="title-3 option-title">Multipass</h3>
+              <span class="option-badge">ÉTÉ</span>
+              <p class="option-description">
+                La station propose des multipass pour profiter des activités, nous vous les offrons pour que votre séjour soit une réussite pour petits et grands.
+              </p>
+              <ul class="option-details">
+                <li><ion-icon name="checkmark-outline"></ion-icon>Accès aux remontées mécaniques</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Activités incluses</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Valable pour toute la famille</li>
+              </ul>
+            </div>
+
+            <!-- Service Traiteur -->
+            <div class="option-card">
+              <ion-icon name="restaurant-outline" class="option-icon"></ion-icon>
+              <h3 class="title-3 option-title">Service Traiteur</h3>
+              <span class="option-badge">SUR MESURE</span>
+              <p class="option-description">
+                Nos partenaires peuvent vous livrer vos repas pour la semaine. Vous n'aurez qu'à déguster.
+              </p>
+              <ul class="option-details">
+                <li><ion-icon name="checkmark-outline"></ion-icon>Cuisine locale</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Produits frais</li>
+                <li><ion-icon name="checkmark-outline"></ion-icon>Livraison au chalet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Réservation -->
+      <section class="reservation" id="reservation">
+        <div class="container">
+          <div class="form reservation-form bg-black-10">
+            <form action="" class="form-left">
+              <h2 class="headline-1 text-center">Formulaire de Contact</h2>
+
+              <p class="form-text text-center">
+                Pour toute demande de réservation ou d'information
+              </p>
+
+              <div class="input-wrapper">
+                <div class="icon-wrapper">
+                  <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                  <input type="text" name="name" placeholder="Votre Nom" autocomplete="off" class="input-field">
+                </div>
+
+                <div class="icon-wrapper">
+                  <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                  <input type="email" name="email" placeholder="Votre Email" autocomplete="off" class="input-field">
+                </div>
+              </div>
+
+              <div class="input-wrapper">
+                <div class="icon-wrapper">
+                  <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+                  <label class="date-label">Date d'arrivée</label>
+                  <input type="date" name="arrival-date" class="input-field" required>
+                </div>
+
+                <div class="icon-wrapper">
+                  <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+                  <label class="date-label">Date de départ</label>
+                  <input type="date" name="departure-date" class="input-field" required>
+                </div>
+              </div>
+
+              <div class="icon-wrapper">
+                <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+                <input type="number" name="people" placeholder="Nombre de personnes" autocomplete="off" class="input-field"
+                  min="1" max="12">
+              </div>
+
+              <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
+
+              <button type="submit" class="btn btn-secondary">
+                <span class="text text-1">Envoyer le message</span>
+                <span class="text text-2" aria-hidden="true">Envoyer le message</span>
+              </button>
+            </form>
+
+            <div class="form-right text-center">
+              <h2 class="headline-1 text-center">Contact</h2>
+
+              <p class="contact-label">Réservation</p>
+
+              <a href="tel:+33676381707" class="body-1 contact-number hover-underline">
+                +33 676381707
+              </a>
+
+              <div class="separator"></div>
+
+              <p class="contact-label">Adresse</p>
+
+              <address class="body-4">
+                1003, Route de vonnes, Châtel 74390, FR
+              </address>
+
+              <p class="contact-label">Email</p>
+
+              <a href="mailto:info@chalet-chatel74.com" class="body-4">info@chalet-chatel74.com</a>
+
+              <div class="separator"></div>
+
+              <p class="contact-label">Ouverture</p>
+
+              <p class="body-4">
+                Eté - Hiver
+              </p>
+
+              <div class="separator"></div>
+
+              <p class="contact-label">
+                Immatriculation
+              </p>
+
+              <p class="body-4">
+                74063 000490 9Y
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer section has-bg-image text-center" style="background-image: url('./assets/images/footer-bg.jpg')">
+    <div class="container">
+      <div class="footer-top grid-list">
+        <div class="footer-brand has-before has-after">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo.svg" width="160" height="50" loading="lazy" alt="grilli home">
+          </a>
+
+          <address class="body-4">
+            1003, Route de vonnes, Châtel 74390, FR
+          </address>
+
+          <a href="mailto:info@chalet-chatel74.com" class="body-4 contact-link">info@chalet-chatel74.com</a>
+
+          <a href="tel:+33676381707" class="body-4 contact-link">Téléphone : +33-676381707</a>
+
+          <p class="body-4">
+            Ouvert : Eté - Hiver
+          </p>
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+        </div>
+
+        <ul class="footer-list">
+          <li>
+            <a href="index.html" class="label-2 footer-link hover-underline">Accueil</a>
+          </li>
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Mentions légales</a>
+          </li>
+
+          <li>
+            <a href="./a-propos.html" class="label-2 footer-link hover-underline">À Propos</a>
+          </li>
+
+          <li>
+            <a href="#reservation" class="label-2 footer-link hover-underline">Contact</a>
+          </li>
+        </ul>
+
+        <ul class="footer-list">
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Instagram</a>
+          </li>
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Youtube</a>
+          </li>
+
+          <li>
+            <a href="https://www.google.com/maps?q=46.258390773560734,6.841972672397687" target="_blank" class="label-2 footer-link hover-underline">Google Map</a>
+          </li>
+
+          <li>
+            <a href="./disponibilites.html" class="label-2 footer-link hover-underline">Disponibilités</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 L'orée du lac. Tout droits réservés | Site construit par <a href="" target="_blank" class="link">VUARAND Jérémy</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+  <!-- Scripts -->
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html> 

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Galerie - Chalet l'Orée du Lac</title>
+  <meta name="title" content="Galerie - Chalet l'Orée du Lac">
+  <meta name="description" content="Découvrez en images notre chalet au bord du lac de Vonnes">
+
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <style>
+    .gallery-section {
+      margin-top: 150px;
+      padding-block: var(--section-space);
+      min-height: 100vh;
+      margin-bottom: 100px;
+      border-bottom: 1px solid var(--white-alpha-10);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      padding: 20px;
+      margin-bottom: 60px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-16);
+      overflow: hidden;
+    }
+
+    .gallery-item.big {
+      grid-column: span 2;
+    }
+
+    .gallery-item .has-before {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-item .has-before:hover { --scale: 1.1; }
+
+    .gallery-item .has-before::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--gold-crayola);
+      z-index: -1;
+      transition: var(--transition-2);
+      transform: skewY(15deg);
+      transform-origin: top right;
+      transition: var(--transition-2);
+    }
+
+    .gallery-item .has-before:hover::before { transform: skewY(0); }
+
+    .gallery-item .card-banner {
+      position: relative;
+      aspect-ratio: var(--width) / var(--height);
+      background-color: var(--eerie-black-1);
+    }
+
+    .gallery-item .img-holder {
+      --width: 250;
+      --height: 280;
+    }
+
+    .gallery-item.big .img-holder {
+      --width: 500;
+      --height: 280;
+    }
+
+    .gallery-item .img-cover {
+      transition: var(--transition-2);
+    }
+
+    .gallery-item:hover .card-banner .img-cover { transform: scale(1.05); }
+
+    .card-content {
+      padding: 20px;
+      padding-block-start: 30px;
+    }
+
+    .card-title { margin-block-end: 20px; }
+
+    .card-title > a {
+      color: var(--white);
+      font-family: var(--fontFamily-forum);
+      font-size: var(--fontSize-3);
+      font-weight: var(--weight-regular);
+      line-height: var(--lineHeight-3);
+      text-align: center;
+      display: block;
+    }
+
+    @media (max-width: 992px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item,
+      .gallery-item.big {
+        grid-column: span 1;
+      }
+
+      .gallery-item .img-holder,
+      .gallery-item.big .img-holder {
+        --width: 285;
+        --height: 336;
+      }
+    }
+
+    .gallery-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .gallery-overlay img {
+      max-width: 90%;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .gallery-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .reservation {
+      padding-top: 100px;
+      padding-bottom: var(--section-space);
+      background-color: var(--smoky-black-3);
+    }
+
+    .form {
+      margin-top: 40px;
+    }
+
+    .section-subtitle {
+      color: var(--gold-crayola);
+      font-size: var(--fontSize-3);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: var(--letterSpacing-1);
+      line-height: var(--lineHeight-3);
+      margin-bottom: 30px;
+      grid-column: 1 / -1;
+    }
+  </style>
+</head>
+
+<body>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">Chalet Oree du lac</p>
+  </div>
+
+  <div class="topbar">
+    <div class="container">
+      <address class="topbar-item">
+        <div class="icon">
+          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">
+          1003, route de vonnes, Châtel 74390, FR
+        </span>
+      </address>
+
+      <div class="separator"></div>
+
+      <div class="topbar-item item-2">
+        <div class="icon">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">Immatriculation: 74063 000490 9Y</span>
+      </div>
+
+      <a href="tel:+33676381707" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">+33 676381707</span>
+      </a>
+
+      <div class="separator"></div>
+
+      <a href="mailto:info@chalet-chatel74.com" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">info@chalet-chatel74.com</span>
+      </a>
+    </div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="./assets/images/logo.svg" width="160" height="50" alt="Orée du lac - Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="index.html" class="logo">
+          <img src="./assets/images/logo.svg" width="160" height="50" alt="Orée du lac - Home">
+        </a>
+
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Accueil</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./galerie.html" class="navbar-link hover-underline active">
+              <div class="separator"></div>
+              <span class="span">Galerie</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#reservation" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Réserver</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./a-propos.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Vos hôtes</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#reservation" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Contact</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./disponibilites.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Disponibilités</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="text-center">
+          <p class="headline-1 navbar-title">Nous visiter</p>
+
+          <address class="body-4">
+            1003, Route de vonnes, <br>
+            Châtel 74390, FR
+          </address>
+
+          <p class="body-4 navbar-text">Ouvert : Eté - Hiver</p>
+
+          <a href="mailto:info@chalet-chatel74.com" class="body-4 sidebar-link">info@chalet-chatel74.com</a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Réservation</p>
+
+          <a href="tel:+33676381707" class="body-1 contact-number hover-underline">
+            +33 676381707
+          </a>
+        </div>
+      </nav>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section class="gallery-section" aria-label="gallery">
+        <div class="container">
+          <h1 class="headline-1 section-title text-center">Galerie Photos</h1>
+          
+          <div class="gallery-grid">
+            <!-- Section A1 : Chambres -->
+            <h2 class="section-subtitle text-center">Chambres & Suites</h2>
+            
+            <div class="gallery-item big">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/chambre.jpg" width="500" height="280" loading="lazy" alt="Suite parentale" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Suite Parentale</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="250" height="280" loading="lazy" alt="Chambre double" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Chambre Double</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="250" height="280" loading="lazy" alt="Chambre enfants" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Chambre Enfants</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="250" height="280" loading="lazy" alt="Chambre triple" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Chambre Triple</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Section B1 : Espaces de vie -->
+            <h2 class="section-subtitle text-center">Espaces de Vie</h2>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="250" height="280" loading="lazy" alt="Salon" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Salon</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item big">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="500" height="280" loading="lazy" alt="Salle à manger" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Salle à Manger</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Section B1 : Espaces de vie (suite) -->
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="250" height="280" loading="lazy" alt="Cuisine" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Cuisine</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="250" height="280" loading="lazy" alt="Coin repas" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Coin Repas</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="250" height="280" loading="lazy" alt="Coin détente" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Coin Détente</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Section A2 : Extérieur -->
+            <h2 class="section-subtitle text-center">Extérieur & Vues</h2>
+
+            <div class="gallery-item big">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="500" height="280" loading="lazy" alt="Vue panoramique" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Vue Panoramique</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="250" height="280" loading="lazy" alt="Terrasse" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Terrasse</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Continuer avec les 3 petites photos de la section A2 -->
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="250" height="280" loading="lazy" alt="Jardin" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Jardin</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="250" height="280" loading="lazy" alt="Vue lac" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Vue Lac</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="250" height="280" loading="lazy" alt="Parking" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Parking</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Section B2 : Équipements -->
+            <h2 class="section-subtitle text-center">Équipements & Services</h2>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="250" height="280" loading="lazy" alt="Buanderie" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Buanderie</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item big">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="500" height="280" loading="lazy" alt="Espace bien-être" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Espace Bien-être</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- 3 petites photos B2 -->
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="250" height="280" loading="lazy" alt="Local ski" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Local Ski</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="250" height="280" loading="lazy" alt="Wifi" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Wifi</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="250" height="280" loading="lazy" alt="Parking privé" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Parking Privé</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Section A3 : Environnement -->
+            <h2 class="section-subtitle text-center">Environnement & Activités</h2>
+
+            <div class="gallery-item big">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="500" height="280" loading="lazy" alt="Lac de Vonnes" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Lac de Vonnes</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="250" height="280" loading="lazy" alt="Pistes de ski" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Pistes de Ski</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- 3 petites photos A3 -->
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="250" height="280" loading="lazy" alt="Randonnées" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Randonnées</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="250" height="280" loading="lazy" alt="Village" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Village</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="250" height="280" loading="lazy" alt="Activités été" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Activités Été</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Section B3 : Détails -->
+            <h2 class="section-subtitle text-center">Détails & Finitions</h2>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="250" height="280" loading="lazy" alt="Décoration" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Décoration</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item big">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="500" height="280" loading="lazy" alt="Architecture" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Architecture</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- 3 petites photos B3 -->
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-1.jpg" width="250" height="280" loading="lazy" alt="Matériaux" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Matériaux</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-2.jpg" width="250" height="280" loading="lazy" alt="Ambiance" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Ambiance</a>
+                </h3>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <a href="#" class="has-before hover:shine">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/service-3.jpg" width="250" height="280" loading="lazy" alt="Confort" class="img-cover">
+                </figure>
+              </a>
+              <div class="card-content">
+                <h3 class="title-4 card-title">
+                  <a href="#">Confort</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <section class="reservation" id="reservation">
+    <div class="container">
+      <div class="form reservation-form bg-black-10">
+        <form action="" class="form-left">
+          <h2 class="headline-1 text-center">Formulaire de Contact</h2>
+
+          <p class="form-text text-center">
+            Pour toute demande de réservation ou d'information
+          </p>
+
+          <div class="input-wrapper">
+            <div class="icon-wrapper">
+              <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+              <input type="text" name="name" placeholder="Votre Nom" autocomplete="off" class="input-field">
+            </div>
+
+            <div class="icon-wrapper">
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+              <input type="email" name="email" placeholder="Votre Email" autocomplete="off" class="input-field">
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <div class="icon-wrapper">
+              <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+              <label class="date-label">Date d'arrivée</label>
+              <input type="date" name="arrival-date" class="input-field" required>
+            </div>
+
+            <div class="icon-wrapper">
+              <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+              <label class="date-label">Date de départ</label>
+              <input type="date" name="departure-date" class="input-field" required>
+            </div>
+          </div>
+
+          <div class="icon-wrapper">
+            <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+            <input type="number" name="people" placeholder="Nombre de personnes" autocomplete="off" class="input-field"
+              min="1" max="12">
+          </div>
+
+          <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
+
+          <button type="submit" class="btn btn-secondary">
+            <span class="text text-1">Envoyer le message</span>
+            <span class="text text-2" aria-hidden="true">Envoyer le message</span>
+          </button>
+        </form>
+
+        <div class="form-right text-center">
+          <h2 class="headline-1 text-center">Contact</h2>
+
+          <p class="contact-label">Réservation</p>
+
+          <a href="tel:+33676381707" class="body-1 contact-number hover-underline">
+            +33 676381707
+          </a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Adresse</p>
+
+          <address class="body-4">
+            1003, Route de vonnes, Châtel 74390, FR
+          </address>
+
+          <p class="contact-label">Email</p>
+
+          <a href="mailto:info@chalet-chatel74.com" class="body-4">info@chalet-chatel74.com</a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Ouverture</p>
+
+          <p class="body-4">
+            Eté - Hiver
+          </p>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">
+            Immatriculation
+          </p>
+
+          <p class="body-4">
+            74063 000490 9Y
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer section has-bg-image text-center" style="background-image: url('./assets/images/footer-bg.jpg')">
+    <div class="container">
+      <div class="footer-top grid-list">
+        <div class="footer-brand has-before has-after">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo.svg" width="160" height="50" loading="lazy" alt="grilli home">
+          </a>
+
+          <address class="body-4">
+            1003, Route de vonnes, Châtel 74390, FR
+          </address>
+
+          <a href="mailto:info@chalet-chatel74.com" class="body-4 contact-link">info@chalet-chatel74.com</a>
+
+          <a href="tel:+33676381707" class="body-4 contact-link">Téléphone : +33-676381707</a>
+
+          <p class="body-4">
+            Ouvert : Eté - Hiver
+          </p>
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+        </div>
+
+        <ul class="footer-list">
+          <li>
+            <a href="index.html" class="label-2 footer-link hover-underline">Accueil</a>
+          </li>
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Mentions légales</a>
+          </li>
+
+          <li>
+            <a href="./a-propos.html" class="label-2 footer-link hover-underline">À Propos</a>
+          </li>
+
+          <li>
+            <a href="index.html#reservation" class="label-2 footer-link hover-underline">Contact</a>
+          </li>
+        </ul>
+
+        <ul class="footer-list">
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Instagram</a>
+          </li>
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Youtube</a>
+          </li>
+
+          <li>
+            <a href="https://www.google.com/maps?q=46.258390773560734,6.841972672397687" target="_blank" class="label-2 footer-link hover-underline">Google Map</a>
+          </li>
+
+          <li>
+            <a href="./disponibilites.html" class="label-2 footer-link hover-underline">Disponibilités</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 L'orée du lac. Tout droits réservés | Site construit par <a href="" target="_blank" class="link">VUARAND Jérémy</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="gallery-overlay">
+    <span class="gallery-close">&times;</span>
+    <img src="" alt="">
+  </div>
+
+  <script src="./assets/js/script.js"></script>
+  <script>
+    // Gestion de la galerie
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const overlay = document.querySelector('.gallery-overlay');
+    const overlayImg = overlay.querySelector('img');
+    const closeBtn = overlay.querySelector('.gallery-close');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.querySelector('img').src;
+        overlayImg.src = imgSrc;
+        overlay.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html> 

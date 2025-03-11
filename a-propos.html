@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>À Propos - Chalet l'Orée du Lac</title>
+  <meta name="title" content="À Propos - Chalet l'Orée du Lac">
+  <meta name="description" content="Découvrez l'histoire et l'expérience de vos hôtes au Chalet l'Orée du Lac">
+
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <style>
+    .about-section {
+      margin-top: 150px;
+      padding-block: var(--section-space);
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .about-text {
+      color: var(--white);
+      font-size: var(--fontSize-body-1);
+      line-height: var(--lineHeight-3);
+      margin-block: 30px;
+    }
+
+    .about-text:not(:last-child) {
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .about-text {
+        font-size: var(--fontSize-body-2);
+      }
+    }
+
+    .reservation {
+      padding-top: 100px;
+      padding-bottom: var(--section-space);
+      background-color: var(--smoky-black-3);
+    }
+
+    .form {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">Chalet Oree du lac</p>
+  </div>
+
+  <div class="topbar">
+    <div class="container">
+      <address class="topbar-item">
+        <div class="icon">
+          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">
+          1003, route de vonnes, Châtel 74390, FR
+        </span>
+      </address>
+
+      <div class="separator"></div>
+
+      <div class="topbar-item item-2">
+        <div class="icon">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">Immatriculation: 74063 000490 9Y</span>
+      </div>
+
+      <a href="tel:+33676381707" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">+33 676381707</span>
+      </a>
+
+      <div class="separator"></div>
+
+      <a href="mailto:info@chalet-chatel74.com" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">info@chalet-chatel74.com</span>
+      </a>
+    </div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="./assets/images/logo.svg" width="160" height="50" alt="Orée du lac - Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="index.html" class="logo">
+          <img src="./assets/images/logo.svg" width="160" height="50" alt="Orée du lac - Home">
+        </a>
+
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Accueil</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./galerie.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Galerie</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#reservation" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Réserver</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./a-propos.html" class="navbar-link hover-underline active">
+              <div class="separator"></div>
+              <span class="span">Vos hôtes</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#reservation" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Contact</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="./disponibilites.html" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Disponibilités</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="text-center">
+          <p class="headline-1 navbar-title">Nous visiter</p>
+
+          <address class="body-4">
+            1003, Route de vonnes, <br>
+            Châtel 74390, FR
+          </address>
+
+          <p class="body-4 navbar-text">Ouvert: Saisons - Semaine et weekend</p>
+
+          <a href="mailto:info@chalet-chatel74.com" class="body-4 sidebar-link">info@chalet-chatel74.com</a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Renseignements</p>
+
+          <a href="tel:+33676381707" class="body-1 contact-number hover-underline">
+            06 76 38 17 07
+          </a>
+
+          <a href="#reservation" class="btn btn-secondary">
+            <span class="text text-1">Réserver Maintenant</span>
+            <span class="text text-2" aria-hidden="true">Réserver Maintenant</span>
+          </a>
+        </div>
+      </nav>
+
+      <a href="#reservation" class="btn btn-secondary">
+        <span class="text text-1">Réserver</span>
+        <span class="text text-2" aria-hidden="true">Réserver</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section class="about-section" aria-label="about">
+        <div class="container">
+          <div class="about-content">
+            <h1 class="headline-1 section-title text-center">À Propos de Nous</h1>
+
+            <p class="about-text">
+              Patrice et Yveline Vuarand, hôteliers, restaurateurs et professionnels du tourisme depuis 1990, ont consacré leur vie à l'accueil et au bien-être des voyageurs. Forts de leur expérience de plus de 20 ans à la tête d'un hôtel au cœur du village, ils mettent désormais à disposition un chalet d'exception, alliant authenticité, espace et confort.
+            </p>
+
+            <p class="about-text">
+              Situé au bord du lac de Vonnes, ce chalet offre un cadre privilégié, les pieds dans l'eau, à proximité des remontées de Linga et Super-Châtel. Été comme hiver, il constitue une parenthèse idéale pour se ressourcer en famille, entre amis ou en séminaire d'entreprise, dans un environnement préservé et apaisant, avec une forêt privée à deux pas.
+            </p>
+
+            <p class="about-text">
+              Que vous soyez passionné de sports d'hiver, amateur de randonnées en montagne ou simplement à la recherche d'un séjour au calme, nous serons ravis de vous accueillir et de vous faire découvrir notre art de recevoir, hérité de plus de 30 ans d'expérience dans l'hôtellerie et le tourisme de montagne.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <section class="reservation" id="reservation">
+    <div class="container">
+      <div class="form reservation-form bg-black-10">
+        <form action="" class="form-left">
+          <h2 class="headline-1 text-center">Formulaire de Contact</h2>
+
+          <p class="form-text text-center">
+            Pour toute demande de réservation ou d'information
+          </p>
+
+          <div class="input-wrapper">
+            <div class="icon-wrapper">
+              <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+              <input type="text" name="name" placeholder="Votre Nom" autocomplete="off" class="input-field">
+            </div>
+
+            <div class="icon-wrapper">
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+              <input type="email" name="email" placeholder="Votre Email" autocomplete="off" class="input-field">
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <div class="icon-wrapper">
+              <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+              <label class="date-label">Date d'arrivée</label>
+              <input type="date" name="arrival-date" class="input-field" required>
+            </div>
+
+            <div class="icon-wrapper">
+              <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+              <label class="date-label">Date de départ</label>
+              <input type="date" name="departure-date" class="input-field" required>
+            </div>
+          </div>
+
+          <div class="icon-wrapper">
+            <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+            <input type="number" name="people" placeholder="Nombre de personnes" autocomplete="off" class="input-field"
+              min="1" max="12">
+          </div>
+
+          <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
+
+          <button type="submit" class="btn btn-secondary">
+            <span class="text text-1">Envoyer le message</span>
+            <span class="text text-2" aria-hidden="true">Envoyer le message</span>
+          </button>
+        </form>
+
+        <div class="form-right text-center">
+          <h2 class="headline-1 text-center">Contact</h2>
+
+          <p class="contact-label">Réservation</p>
+
+          <a href="tel:+33676381707" class="body-1 contact-number hover-underline">
+            +33 676381707
+          </a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Adresse</p>
+
+          <address class="body-4">
+            1003, Route de vonnes, Châtel 74390, FR
+          </address>
+
+          <p class="contact-label">Email</p>
+
+          <a href="mailto:info@chalet-chatel74.com" class="body-4">info@chalet-chatel74.com</a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Ouverture</p>
+
+          <p class="body-4">
+            Eté - Hiver
+          </p>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">
+            Immatriculation
+          </p>
+
+          <p class="body-4">
+            74063 000490 9Y
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer section has-bg-image text-center" style="background-image: url('./assets/images/footer-bg.jpg')">
+    <div class="container">
+      <div class="footer-top grid-list">
+        <div class="footer-brand has-before has-after">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo.svg" width="160" height="50" loading="lazy" alt="grilli home">
+          </a>
+
+          <address class="body-4">
+            1003, Route de vonnes, Châtel 74390, FR
+          </address>
+
+          <a href="mailto:info@chalet-chatel74.com" class="body-4 contact-link">info@chalet-chatel74.com</a>
+
+          <a href="tel:+33676381707" class="body-4 contact-link">Téléphone : +33-676381707</a>
+
+          <p class="body-4">
+            Ouvert : Eté - Hiver
+          </p>
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+        </div>
+
+        <ul class="footer-list">
+          <li>
+            <a href="index.html" class="label-2 footer-link hover-underline">Accueil</a>
+          </li>
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Mentions légales</a>
+          </li>
+
+          <li>
+            <a href="./a-propos.html" class="label-2 footer-link hover-underline">À Propos</a>
+          </li>
+
+          <li>
+            <a href="index.html#reservation" class="label-2 footer-link hover-underline">Contact</a>
+          </li>
+        </ul>
+
+        <ul class="footer-list">
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Instagram</a>
+          </li>
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Youtube</a>
+          </li>
+
+          <li>
+            <a href="https://www.google.com/maps?q=46.258390773560734,6.841972672397687" target="_blank" class="label-2 footer-link hover-underline">Google Map</a>
+          </li>
+
+          <li>
+            <a href="./disponibilites.html" class="label-2 footer-link hover-underline">Disponibilités</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 L'orée du lac. Tout droits réservés | Site construit par <a href="" target="_blank" class="link">VUARAND Jérémy</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html> 
